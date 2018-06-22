@@ -45,4 +45,5 @@ public class CustomAdapter extends ArrayAdapter<Book> {
         return v;
     }
 
+
 }
