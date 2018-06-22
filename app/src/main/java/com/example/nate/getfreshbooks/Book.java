@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public class Book extends HashMap<String, Object> {
-    final static String baseURL = "http://172.17.253.129/GetFreshBooks/Inventory/loaddata";
+    private final static String baseURL = "http://172.17.253.129/GetFreshBooks/Inventory/";
     private int bookId;
     private String title;
     private int categoryId;
@@ -29,14 +29,7 @@ public class Book extends HashMap<String, Object> {
     }
 
     public static List<Book> list() throws JSONException {
-//        List<Book> list = new ArrayList<>();
-
-        // Done, returns data object
-        JSONObject a = JSONParser.getJSONFromUrl(baseURL);
-
-        // Done, returns array of JSON objects
-        JSONArray data = new JSONArray(a.getString("data"));
-
+        JSONArray data = JSONParser.getJSONArrayFromUrl(baseURL + "loaddata");
         List<Book> books = new ArrayList<>();
 
         // Loop through all JSON objects
@@ -57,5 +50,20 @@ public class Book extends HashMap<String, Object> {
         }
 
         return books;
+    }
+
+    public static Book findBookbyId(int id) throws JSONException {
+        JSONArray jsonArray = JSONParser.getJSONArrayFromUrl(baseURL + "loadsingle/" + String.valueOf(id));
+        JSONObject bookJson = jsonArray.getJSONObject(0);
+
+        return new Book(
+                bookJson.getInt("BookID"),
+                bookJson.getString("Title"),
+                bookJson.getInt("CategoryID"),
+                bookJson.getString("ISBN"),
+                bookJson.getString("Author"),
+                bookJson.getInt("Stock"),
+                bookJson.getDouble("Price")
+        );
     }
 }
