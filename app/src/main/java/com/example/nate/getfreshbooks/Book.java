@@ -1,15 +1,24 @@
 package com.example.nate.getfreshbooks;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Log;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.InputStream;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 public class Book extends HashMap<String, Object> {
     private final static String baseURL = "http://172.17.253.129/GetFreshBooks/Inventory/";
+    private final static String imageURL = "http://172.17.253.129/GetFreshBooks/images/";
+
     private int bookId;
     private String title;
     private int categoryId;
@@ -65,5 +74,19 @@ public class Book extends HashMap<String, Object> {
                 bookJson.getInt("Stock"),
                 bookJson.getDouble("Price")
         );
+    }
+
+    public static Bitmap getPhoto(String isbn) {
+        try {
+            URL url = (new URL(String.format("%s%s.jpg", imageURL, isbn)));
+            URLConnection conn = url.openConnection();
+            InputStream ins = conn.getInputStream();
+            Bitmap bitmap = BitmapFactory.decodeStream(ins);
+            ins.close();
+            return bitmap;
+        } catch (Exception e) {
+            Log.e("Employee.getPhoto()", "Bitmap error");
+        }
+        return null;
     }
 }
