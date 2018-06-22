@@ -3,8 +3,8 @@ package com.example.nate.getfreshbooks;
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.StrictMode;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.SimpleAdapter;
 
 import org.json.JSONException;
 
@@ -30,6 +30,8 @@ public class MainActivity extends Activity {
         }
 
         ListView listView = findViewById(R.id.listView);
-        listView.setAdapter(new ArrayAdapter<>(this, R.layout.row, R.id.bookTitleView, books));
+        listView.setAdapter(new SimpleAdapter(
+                this, books, R.layout.row, new String[]{"title", "author"}, new int[]{R.id.bookTitleView, R.id.bookAuthorView}
+        ));
     }
 }
