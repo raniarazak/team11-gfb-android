@@ -1,57 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".BookDetailsActivity">
 
-    <EditText
-        android:id="@+id/bookIdEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="text" />
+    <ImageView
+        android:id="@+id/bookDetailsImageView"
+        android:layout_height="600dp"
+        android:layout_weight="1"
+        android:paddingVertical="10dp" />
 
-    <EditText
-        android:id="@+id/titleEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="text" />
+    <TableRow android:paddingHorizontal="10dp">
 
-    <EditText
-        android:id="@+id/categoryIdEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="text" />
+        <TextView
+            android:labelFor="@+id/bookIdEditText"
+            android:text="@string/label_book_id" />
 
-    <EditText
-        android:id="@+id/isbnEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="text" />
+        <EditText
+            android:id="@+id/bookIdEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:inputType="text" />
+    </TableRow>
 
-    <EditText
-        android:id="@+id/authorEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="text" />
+    <TableRow android:paddingHorizontal="10dp">
 
-    <EditText
-        android:id="@+id/stockEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="text" />
+        <TextView
+            android:labelFor="@+id/titleEditText"
+            android:text="@string/label_title" />
 
-    <EditText
-        android:id="@+id/priceEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="text" />
-</LinearLayout>
+        <EditText
+            android:id="@+id/titleEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:inputType="text" />
+    </TableRow>
+
+    <TableRow android:paddingHorizontal="10dp">
+
+        <TextView
+            android:labelFor="@+id/categoryIdEditText"
+            android:text="@string/label_category" />
+
+        <EditText
+            android:id="@+id/categoryIdEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:inputType="text" />
+    </TableRow>
+
+    <TableRow android:paddingHorizontal="10dp">
+
+        <TextView
+            android:labelFor="@+id/isbnEditText"
+            android:text="@string/label_isbn" />
+
+        <EditText
+            android:id="@+id/isbnEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:inputType="text" />
+    </TableRow>
+
+    <TableRow android:paddingHorizontal="10dp">
+
+        <TextView
+            android:labelFor="@+id/authorEditText"
+            android:text="@string/label_author" />
+
+        <EditText
+            android:id="@+id/authorEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:inputType="text" />
+    </TableRow>
+
+    <TableRow android:paddingHorizontal="10dp">
+
+        <TextView
+            android:labelFor="@+id/stockEditText"
+            android:text="@string/label_stock" />
+
+        <EditText
+            android:id="@+id/stockEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:inputType="text" />
+
+        <TextView
+            android:labelFor="@+id/priceEditText"
+            android:text="@string/label_price" />
+
+        <EditText
+            android:id="@+id/priceEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:inputType="text" />
+    </TableRow>
+</TableLayout>

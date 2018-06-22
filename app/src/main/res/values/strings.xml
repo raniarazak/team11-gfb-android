@@ -1,4 +1,11 @@
 <resources>
     <string name="app_name">GetFreshBooks</string>
     <string name="cover_thumbnail">Book Cover Thumbnail</string>
+    <string name="label_price">Price</string>
+    <string name="label_stock">Stock</string>
+    <string name="label_author">Author</string>
+    <string name="label_isbn">ISBN</string>
+    <string name="label_category">Category</string>
+    <string name="label_title">Title</string>
+    <string name="label_book_id">Book ID</string>
 </resources>

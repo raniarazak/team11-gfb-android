@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import org.json.JSONException;
 
@@ -23,6 +24,9 @@ public class BookDetailsActivity extends Activity {
         }
 
         // Initialize Book Details
+        ImageView imageView = findViewById(R.id.bookDetailsImageView);
+        imageView.setImageBitmap(Book.getPhoto(book.get("isbn").toString()));
+
         EditText bookIdEditText = findViewById(R.id.bookIdEditText);
         bookIdEditText.setText(book.get("bookId").toString());
 
