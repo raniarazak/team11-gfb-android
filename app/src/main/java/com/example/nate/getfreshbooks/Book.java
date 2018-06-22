@@ -16,8 +16,11 @@ import java.util.HashMap;
 import java.util.List;
 
 public class Book extends HashMap<String, Object> {
-    private final static String baseURL = "http://172.17.253.129/GetFreshBooks/Inventory/";
-    private final static String imageURL = "http://172.17.253.129/GetFreshBooks/images/";
+//    private final static String baseURL = "http://172.17.253.129/GetFreshBooks/Inventory/";
+//    private final static String imageURL = "http://172.17.253.129/GetFreshBooks/images/";
+
+    private final static String baseURL = "http://192.168.1.21/GetFreshBooks/Inventory/";
+    private final static String imageURL = "http://192.168.1.21/GetFreshBooks/images/";
 
     private int bookId;
     private String title;

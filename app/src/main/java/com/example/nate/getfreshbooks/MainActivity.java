@@ -2,6 +2,7 @@ package com.example.nate.getfreshbooks;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.util.Log;
@@ -70,6 +71,9 @@ public class MainActivity extends Activity {
         listView.setOnItemClickListener((adapterView, view, i, l) -> {
             Book book = (Book) listView.getItemAtPosition(i);
             Log.i("LIST ON CLICK", book.get("isbn").toString());
+            Intent intent = new Intent(this, BookDetailsActivity.class);
+            intent.putExtra("bookId", (int) book.get("bookId"));
+            startActivity(intent);
         });
     }
 }
