@@ -8,4 +8,12 @@
     <string name="label_category">Category</string>
     <string name="label_title">Title</string>
     <string name="label_book_id">Book ID</string>
+
+    <!-- Strings related to Menu -->
+    <string name="menu_option_1">Settings</string>
+    <string name="title_activity_settings">Settings</string>
+
+    <!-- Strings related to Settings -->
+    <string name="default_hostname">192.168.1.9</string>
+    <string name="pref_title_hostname">Hostname</string>
 </resources>
