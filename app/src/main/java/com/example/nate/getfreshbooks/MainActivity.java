@@ -85,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             protected void onPostExecute(List<Book> books) {
+                MainActivity.this.books = books;
                 listView.setAdapter(new CustomAdapter(MainActivity.this, R.layout.row, books));
             }
         }.execute();
