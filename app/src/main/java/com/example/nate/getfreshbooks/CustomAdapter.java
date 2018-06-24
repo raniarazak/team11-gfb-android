@@ -2,6 +2,8 @@ package com.example.nate.getfreshbooks;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.os.AsyncTask;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,7 +41,19 @@ public class CustomAdapter extends ArrayAdapter<Book> {
             authorTitleView.setText(book.get("author").toString());
 
             ImageView imageView = v.findViewById(R.id.image_cover_thumbnail);
-            imageView.setImageBitmap(Book.getPhoto(book.get("isbn").toString()));
+            new AsyncTask<String, Void, Bitmap>() {
+                @Override
+                protected Bitmap doInBackground(String... strings) {
+                    return Book.getPhoto(strings[0]);
+                }
+
+                @Override
+                protected void onPostExecute(Bitmap bitmap) {
+                    imageView.setImageBitmap(bitmap);
+                }
+            }.execute(book.get("isbn").toString());
+
+//            imageView.setImageBitmap(Book.getPhoto(book.get("isbn").toString()));
         }
 
         return v;

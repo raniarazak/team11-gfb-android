@@ -1,10 +1,12 @@
 package com.example.nate.getfreshbooks;
 
 import android.annotation.TargetApi;
-import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,15 +19,22 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class MainActivity extends Activity {
+public class MainActivity extends AppCompatActivity {
 
+    public static Context context;
     List<Book> books;
     List<Book> queryBooks;
+
+    public static Context getContext() {
+        return context;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        context = getApplicationContext();
 
         // TODO: Change to async task
         StrictMode.setThreadPolicy(StrictMode.ThreadPolicy.LAX);
@@ -60,16 +69,26 @@ public class MainActivity extends Activity {
 
         });
 
-
         // Initialize ListView
-        try {
-            books = Book.list();
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
         ListView listView = findViewById(R.id.listView);
-        listView.setAdapter(new CustomAdapter(this, R.layout.row, books));
+
+        new AsyncTask<Void, Void, List<Book>>() {
+            @Override
+            protected List<Book> doInBackground(Void... voids) {
+                try {
+                    return Book.list();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    return null;
+                }
+            }
+
+            @Override
+            protected void onPostExecute(List<Book> books) {
+                listView.setAdapter(new CustomAdapter(MainActivity.this, R.layout.row, books));
+            }
+        }.execute();
+
         listView.setOnItemClickListener((adapterView, view, i, l) -> {
             Book book = (Book) listView.getItemAtPosition(i);
             Log.i("LIST ON CLICK", book.get("isbn").toString());

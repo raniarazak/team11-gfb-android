@@ -15,105 +15,106 @@
     <TableRow android:paddingHorizontal="10dp">
 
         <android.support.design.widget.TextInputLayout
-            android:id="@+id/text_input_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/label_book_id">
+            android:layout_weight="1">
 
-            <EditText
-                android:id="@+id/bookIdEditText"
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/titleEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ems="10"
+                android:hint="@string/label_title"
                 android:inputType="text" />
         </android.support.design.widget.TextInputLayout>
     </TableRow>
 
     <TableRow android:paddingHorizontal="10dp">
 
-        <TextView
-            android:labelFor="@+id/titleEditText"
-            android:text="@string/label_title" />
-
-        <EditText
-            android:id="@+id/titleEditText"
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:inputType="text" />
+            android:layout_weight="1">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/authorEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/label_author"
+                android:inputType="text" />
+        </android.support.design.widget.TextInputLayout>
     </TableRow>
 
     <TableRow android:paddingHorizontal="10dp">
 
-        <TextView
-            android:labelFor="@+id/categoryIdEditText"
-            android:text="@string/label_category" />
-
-        <EditText
-            android:id="@+id/categoryIdEditText"
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:inputType="text" />
+            android:layout_weight="1">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/isbnEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/label_isbn"
+                android:inputType="number" />
+        </android.support.design.widget.TextInputLayout>
     </TableRow>
+
 
     <TableRow android:paddingHorizontal="10dp">
 
-        <TextView
-            android:labelFor="@+id/isbnEditText"
-            android:text="@string/label_isbn" />
-
-        <EditText
-            android:id="@+id/isbnEditText"
-            android:layout_width="match_parent"
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:inputType="text" />
-    </TableRow>
+            android:layout_weight="1">
 
-    <TableRow android:paddingHorizontal="10dp">
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/bookIdEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:enabled="false"
+                android:hint="@string/label_book_id"
+                android:inputType="text|number" />
 
-        <TextView
-            android:labelFor="@+id/authorEditText"
-            android:text="@string/label_author" />
+        </android.support.design.widget.TextInputLayout>
 
-        <EditText
-            android:id="@+id/authorEditText"
-            android:layout_width="match_parent"
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:inputType="text" />
-    </TableRow>
+            android:layout_weight="1">
 
-    <TableRow android:paddingHorizontal="10dp">
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/categoryIdEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/label_category"
+                android:inputType="number" />
+        </android.support.design.widget.TextInputLayout>
 
-        <TextView
-            android:labelFor="@+id/stockEditText"
-            android:text="@string/label_stock" />
-
-        <EditText
-            android:id="@+id/stockEditText"
-            android:layout_width="match_parent"
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:inputType="text" />
+            android:layout_weight="1">
 
-        <TextView
-            android:labelFor="@+id/priceEditText"
-            android:text="@string/label_price" />
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/stockEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/label_stock"
+                android:inputType="number" />
+        </android.support.design.widget.TextInputLayout>
 
-        <EditText
-            android:id="@+id/priceEditText"
-            android:layout_width="match_parent"
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:inputType="text" />
+            android:layout_weight="1">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/priceEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/label_price"
+                android:inputType="numberDecimal" />
+        </android.support.design.widget.TextInputLayout>
     </TableRow>
 </TableLayout>
