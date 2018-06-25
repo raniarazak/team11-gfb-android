@@ -32,29 +32,35 @@ public class CustomAdapter extends ArrayAdapter<Book> {
         View v = inflater.inflate(resource, null);
 
         Book book = books.get(position);
+        if(convertView!=null) {
+         v=convertView;
+        }
+        else{
+            if (book != null) {
+                TextView bookTitleView = v.findViewById(R.id.bookTitleView);
+                bookTitleView.setText(book.get("title").toString());
 
-        if (book != null) {
-            TextView bookTitleView = v.findViewById(R.id.bookTitleView);
-            bookTitleView.setText(book.get("title").toString());
+                TextView authorTitleView = v.findViewById(R.id.bookAuthorView);
+                authorTitleView.setText(book.get("author").toString());
+                ImageView imageView = v.findViewById(R.id.image_cover_thumbnail);
+                new AsyncTask<String, Void, Bitmap>() {
+                    @Override
+                    protected Bitmap doInBackground(String... strings) {
+                        return Book.getPhoto(strings[0]);
+                    }
 
-            TextView authorTitleView = v.findViewById(R.id.bookAuthorView);
-            authorTitleView.setText(book.get("author").toString());
-
-            ImageView imageView = v.findViewById(R.id.image_cover_thumbnail);
-            new AsyncTask<String, Void, Bitmap>() {
-                @Override
-                protected Bitmap doInBackground(String... strings) {
-                    return Book.getPhoto(strings[0]);
-                }
-
-                @Override
-                protected void onPostExecute(Bitmap bitmap) {
-                    imageView.setImageBitmap(bitmap);
-                }
-            }.execute(book.get("isbn").toString());
+                    @Override
+                    protected void onPostExecute(Bitmap bitmap) {
+                        imageView.setImageBitmap(bitmap);
+                    }
+                }.execute(book.get("isbn").toString());
 
 //            imageView.setImageBitmap(Book.getPhoto(book.get("isbn").toString()));
+            }
+
         }
+
+
 
         return v;
     }
