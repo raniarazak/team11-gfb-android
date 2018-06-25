@@ -94,7 +94,7 @@ public class BookDetailsActivity extends AppCompatActivity {
         p.setTitle("Updating");
         p.setMessage("Please wait ...");
         p.setCancelable(false);
-        p.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        p.setProgressStyle(ProgressDialog.STYLE_SPINNER);
 
         EditText bookIdEditText = findViewById(R.id.bookIdEditText);
         EditText titleEditText = findViewById(R.id.titleEditText);
