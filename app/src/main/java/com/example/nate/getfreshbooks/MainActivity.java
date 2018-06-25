@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         queryBooks = new ArrayList<>();
 
         getSupportActionBar().setIcon(R.drawable.ic_book_white_24dp);
-        getSupportActionBar().setTitle(" FreshBooks");
+        getSupportActionBar().setTitle(" Freshbooks");
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayUseLogoEnabled(true);
 

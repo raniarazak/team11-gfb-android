@@ -32,10 +32,9 @@ public class CustomAdapter extends ArrayAdapter<Book> {
         View v = inflater.inflate(resource, null);
 
         Book book = books.get(position);
-        if(convertView!=null) {
-         v=convertView;
-        }
-        else{
+        if (convertView != null) {
+            v = convertView;
+        } else {
             if (book != null) {
                 TextView bookTitleView = v.findViewById(R.id.bookTitleView);
                 bookTitleView.setText(book.get("title").toString());
@@ -59,7 +58,6 @@ public class CustomAdapter extends ArrayAdapter<Book> {
             }
 
         }
-
 
 
         return v;
