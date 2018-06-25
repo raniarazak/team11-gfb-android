@@ -1,7 +1,9 @@
 package com.example.nate.getfreshbooks;
 
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.preference.PreferenceManager;
 import android.util.Log;
 
 import org.json.JSONArray;
@@ -16,8 +18,6 @@ import java.util.HashMap;
 import java.util.List;
 
 public class Book extends HashMap<String, Object> {
-    private final static String baseURL = "http://172.17.253.129/GetFreshBooks/Inventory/";
-    private final static String imageURL = "http://172.17.253.129/GetFreshBooks/images/";
 
     private int bookId;
     private String title;
@@ -37,8 +37,19 @@ public class Book extends HashMap<String, Object> {
         put("price", price);
     }
 
+    private static String getBaseUrl() {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(MainActivity.getContext());
+        return String.format("http://%s/GetFreshBooks/Inventory/", prefs.getString("hostname", "192.168.1.9"));
+
+    }
+
+    private static String getImageURL() {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(MainActivity.getContext());
+        return String.format("http://%s/GetFreshBooks/images/", prefs.getString("hostname", "192.168.1.9"));
+    }
+
     public static List<Book> list() throws JSONException {
-        JSONArray data = JSONParser.getJSONArrayFromUrl(baseURL + "loaddata");
+        JSONArray data = JSONParser.getJSONArrayFromUrl(getBaseUrl() + "loaddata");
         List<Book> books = new ArrayList<>();
 
         // Loop through all JSON objects
@@ -62,7 +73,7 @@ public class Book extends HashMap<String, Object> {
     }
 
     public static Book findBookbyId(int id) throws JSONException {
-        JSONArray jsonArray = JSONParser.getJSONArrayFromUrl(baseURL + "loadsingle/" + String.valueOf(id));
+        JSONArray jsonArray = JSONParser.getJSONArrayFromUrl(getBaseUrl() + "loadsingle/" + String.valueOf(id));
         JSONObject bookJson = jsonArray.getJSONObject(0);
 
         return new Book(
@@ -78,7 +89,7 @@ public class Book extends HashMap<String, Object> {
 
     public static Bitmap getPhoto(String isbn) {
         try {
-            URL url = (new URL(String.format("%s%s.jpg", imageURL, isbn)));
+            URL url = (new URL(String.format("%s%s.jpg", getImageURL(), isbn)));
             URLConnection conn = url.openConnection();
             InputStream ins = conn.getInputStream();
             Bitmap bitmap = BitmapFactory.decodeStream(ins);
@@ -88,5 +99,25 @@ public class Book extends HashMap<String, Object> {
             Log.e("Employee.getPhoto()", "Bitmap error");
         }
         return null;
+    }
+
+    public static void updateBook(Book book) {
+        JSONObject jBook = new JSONObject();
+
+        try {
+            jBook.put("BookID", book.get("bookId"));
+            jBook.put("Title", book.get("title"));
+            jBook.put("CategoryID", book.get("categoryId"));
+            jBook.put("ISBN", book.get("isbn"));
+            jBook.put("Author", book.get("author"));
+            jBook.put("Stock", book.get("stock"));
+            jBook.put("Price", book.get("price"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        Log.i("Book JSON", jBook.toString());
+
+        String result = JSONParser.postStream(getBaseUrl() + "/save", jBook.toString());
     }
 }

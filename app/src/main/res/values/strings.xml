@@ -1,3 +1,20 @@
 <resources>
-    <string name="app_name">GetFreshBooks</string>
+    <string name="app_name">Freshbooks</string>
+    <string name="cover_thumbnail">Book Cover Thumbnail</string>
+    <string name="label_price">Price</string>
+    <string name="label_stock">Stock</string>
+    <string name="label_author">Author</string>
+    <string name="label_isbn">ISBN</string>
+    <string name="label_category">Category</string>
+    <string name="label_title">Title</string>
+    <string name="label_book_id">Book ID</string>
+
+    <!-- Strings related to Menu -->
+    <string name="menu_option_1">Settings</string>
+    <string name="title_activity_settings">Settings</string>
+
+    <!-- Strings related to Settings -->
+    <string name="default_hostname">172.17.185.229</string>
+    <string name="pref_title_hostname">Hostname</string>
+    <string name="search_hint">Search by Author or Title</string>
 </resources>
