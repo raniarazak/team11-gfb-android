@@ -1,5 +1,6 @@
 package com.example.nate.getfreshbooks;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
@@ -10,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import org.json.JSONException;
 
@@ -87,6 +89,12 @@ public class BookDetailsActivity extends AppCompatActivity {
 
     private void updateBook() {
         FloatingActionButton button = findViewById(R.id.fab);
+        Toast updateMsg = Toast.makeText(getBaseContext(), "Updated", Toast.LENGTH_SHORT);
+        final ProgressDialog p = new ProgressDialog(this);
+        p.setTitle("Updating");
+        p.setMessage("Please wait ...");
+        p.setCancelable(false);
+        p.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
 
         EditText bookIdEditText = findViewById(R.id.bookIdEditText);
         EditText titleEditText = findViewById(R.id.titleEditText);
@@ -99,12 +107,32 @@ public class BookDetailsActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new AsyncTask<Book, Void, Void>() {
+                new AsyncTask<Book, Integer, Void>() {
+                    @Override
+                    protected void onProgressUpdate(Integer... values) {
+                        super.onProgressUpdate(values);
+
+
+                    }
+
                     @Override
                     protected Void doInBackground(Book... books) {
                         Book.updateBook(books[0]);
-
                         return null;
+                    }
+
+                    @Override
+                    protected void onPreExecute() {
+                        super.onPreExecute();
+                        p.show();
+                    }
+
+                    @Override
+                    protected void onPostExecute(Void aVoid) {
+                        super.onPostExecute(aVoid);
+                        p.dismiss();
+                        updateMsg.show();
+                        BookDetailsActivity.this.finish();
                     }
                 }.execute(new Book(
                         Integer.parseInt(bookIdEditText.getText().toString()),
@@ -116,6 +144,7 @@ public class BookDetailsActivity extends AppCompatActivity {
                         Double.parseDouble(priceEditText.getText().toString())
                 ));
             }
+
         });
     }
 }
