@@ -15,7 +15,7 @@ import java.util.List;
 
 public class CustomAdapter extends ArrayAdapter<Book> {
 
-    private int resource;
+    final private int resource;
     private List<Book> books;
 
     public CustomAdapter(Context context, int resource, List<Book> books) {

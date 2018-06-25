@@ -5,9 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
@@ -22,8 +20,8 @@ import java.util.stream.Collectors;
 public class MainActivity extends AppCompatActivity {
 
     public static Context context;
-    List<Book> books;
-    List<Book> queryBooks;
+    private List<Book> books;
+    private List<Book> queryBooks;
 
     public static Context getContext() {
         return context;
@@ -35,9 +33,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         context = getApplicationContext();
-
-        // TODO: Change to async task
-        StrictMode.setThreadPolicy(StrictMode.ThreadPolicy.LAX);
 
         books = new ArrayList<>();
         queryBooks = new ArrayList<>();
@@ -92,7 +87,6 @@ public class MainActivity extends AppCompatActivity {
 
         listView.setOnItemClickListener((adapterView, view, i, l) -> {
             Book book = (Book) listView.getItemAtPosition(i);
-            Log.i("LIST ON CLICK", book.get("isbn").toString());
             Intent intent = new Intent(this, BookDetailsActivity.class);
             intent.putExtra("bookId", (int) book.get("bookId"));
             startActivity(intent);

@@ -39,13 +39,13 @@ public class Book extends HashMap<String, Object> {
 
     private static String getBaseUrl() {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(MainActivity.getContext());
-        return String.format("http://%s/GetFreshBooks/Inventory/", prefs.getString("localhost", "192.168.1.9"));
+        return String.format("http://%s/GetFreshBooks/Inventory/", prefs.getString("hostname", "192.168.1.9"));
 
     }
 
     private static String getImageURL() {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(MainActivity.getContext());
-        return String.format("http://%s/GetFreshBooks/images/", prefs.getString("localhost", "192.168.1.9"));
+        return String.format("http://%s/GetFreshBooks/images/", prefs.getString("hostname", "192.168.1.9"));
     }
 
     public static List<Book> list() throws JSONException {
@@ -99,5 +99,25 @@ public class Book extends HashMap<String, Object> {
             Log.e("Employee.getPhoto()", "Bitmap error");
         }
         return null;
+    }
+
+    public static void updateBook(Book book) {
+        JSONObject jBook = new JSONObject();
+
+        try {
+            jBook.put("BookID", book.get("bookId"));
+            jBook.put("Title", book.get("title"));
+            jBook.put("CategoryID", book.get("categoryId"));
+            jBook.put("ISBN", book.get("isbn"));
+            jBook.put("Author", book.get("author"));
+            jBook.put("Stock", book.get("stock"));
+            jBook.put("Price", book.get("price"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        Log.i("Book JSON", jBook.toString());
+
+        String result = JSONParser.postStream(getBaseUrl() + "/update", jBook.toString());
     }
 }

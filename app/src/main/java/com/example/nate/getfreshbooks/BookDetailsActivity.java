@@ -4,7 +4,10 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.StrictMode;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 
@@ -33,6 +36,10 @@ public class BookDetailsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book_details);
+        StrictMode.setThreadPolicy(StrictMode.ThreadPolicy.LAX);
+        setTitle("Book Details");
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         Intent intent = getIntent();
 
         new AsyncTask<Integer, Void, Book>() {
@@ -72,7 +79,43 @@ public class BookDetailsActivity extends AppCompatActivity {
                 priceEditText.setText(book.get("price").toString());
 
                 BookDetailsActivity.this.setBookCover(book);
+
+                BookDetailsActivity.this.updateBook();
             }
         }.execute(intent.getExtras().getInt("bookId"));
+    }
+
+    private void updateBook() {
+        FloatingActionButton button = findViewById(R.id.fab);
+
+        EditText bookIdEditText = findViewById(R.id.bookIdEditText);
+        EditText titleEditText = findViewById(R.id.titleEditText);
+        EditText categoryIdEditText = findViewById(R.id.categoryIdEditText);
+        EditText isbnEditText = findViewById(R.id.isbnEditText);
+        EditText authorEditText = findViewById(R.id.authorEditText);
+        EditText stockEditText = findViewById(R.id.stockEditText);
+        EditText priceEditText = findViewById(R.id.priceEditText);
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new AsyncTask<Book, Void, Void>() {
+                    @Override
+                    protected Void doInBackground(Book... books) {
+                        Book.updateBook(books[0]);
+
+                        return null;
+                    }
+                }.execute(new Book(
+                        Integer.parseInt(bookIdEditText.getText().toString()),
+                        titleEditText.getText().toString(),
+                        Integer.parseInt(categoryIdEditText.getText().toString()),
+                        isbnEditText.getText().toString(),
+                        authorEditText.getText().toString(),
+                        Integer.parseInt(stockEditText.getText().toString()),
+                        Double.parseDouble(priceEditText.getText().toString())
+                ));
+            }
+        });
     }
 }
