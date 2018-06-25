@@ -37,6 +37,11 @@ public class MainActivity extends AppCompatActivity {
         books = new ArrayList<>();
         queryBooks = new ArrayList<>();
 
+        getSupportActionBar().setIcon(R.drawable.ic_book_white_24dp);
+        getSupportActionBar().setTitle(" Freshbooks");
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayUseLogoEnabled(true);
+
         // Initialize SearchView
         final SearchView searchView = findViewById(R.id.searchView);
         searchView.setOnClickListener(v -> searchView.setIconified(false));

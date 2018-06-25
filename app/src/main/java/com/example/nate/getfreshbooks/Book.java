@@ -118,6 +118,6 @@ public class Book extends HashMap<String, Object> {
 
         Log.i("Book JSON", jBook.toString());
 
-        String result = JSONParser.postStream(getBaseUrl() + "/update", jBook.toString());
+        String result = JSONParser.postStream(getBaseUrl() + "/save", jBook.toString());
     }
 }
