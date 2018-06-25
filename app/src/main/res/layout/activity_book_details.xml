@@ -7,6 +7,7 @@
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:paddingHorizontal="20dp"
         android:focusable="true"
         android:focusableInTouchMode="true"
         android:orientation="vertical"
@@ -14,11 +15,11 @@
 
         <ImageView
             android:id="@+id/bookDetailsImageView"
-            android:layout_height="300dp"
+            android:layout_height="250dp"
             android:layout_weight="1"
             android:paddingVertical="10dp" />
 
-        <TableRow android:paddingHorizontal="10dp">
+        <TableRow android:paddingHorizontal="15dp">
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
@@ -29,13 +30,13 @@
                     android:id="@+id/titleEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="@android:color/white"
+                    android:backgroundTint="@color/text_edit_underline"
                     android:hint="@string/label_title"
-                    android:inputType="text" />
+                    android:inputType="textMultiLine" />
             </android.support.design.widget.TextInputLayout>
         </TableRow>
 
-        <TableRow android:paddingHorizontal="10dp">
+        <TableRow android:paddingHorizontal="15dp">
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
@@ -46,13 +47,13 @@
                     android:id="@+id/authorEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="@android:color/white"
+                    android:backgroundTint="@color/text_edit_underline"
                     android:hint="@string/label_author"
                     android:inputType="text" />
             </android.support.design.widget.TextInputLayout>
         </TableRow>
 
-        <TableRow android:paddingHorizontal="10dp">
+        <TableRow android:paddingHorizontal="15dp">
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
@@ -63,14 +64,14 @@
                     android:id="@+id/isbnEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="@android:color/white"
+                    android:backgroundTint="@color/text_edit_underline"
                     android:hint="@string/label_isbn"
                     android:inputType="number" />
             </android.support.design.widget.TextInputLayout>
         </TableRow>
 
 
-        <TableRow android:paddingHorizontal="10dp">
+        <TableRow android:paddingHorizontal="15dp">
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="0dp"
@@ -81,7 +82,7 @@
                     android:id="@+id/bookIdEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="@android:color/white"
+                    android:backgroundTint="@color/text_edit_underline"
                     android:enabled="false"
                     android:hint="@string/label_book_id"
                     android:inputType="text|number" />
@@ -97,7 +98,7 @@
                     android:id="@+id/categoryIdEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="@android:color/white"
+                    android:backgroundTint="@color/text_edit_underline"
                     android:hint="@string/label_category"
                     android:inputType="number" />
             </android.support.design.widget.TextInputLayout>
@@ -111,7 +112,7 @@
                     android:id="@+id/stockEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="@android:color/white"
+                    android:backgroundTint="@color/text_edit_underline"
                     android:hint="@string/label_stock"
                     android:inputType="number" />
             </android.support.design.widget.TextInputLayout>
@@ -125,7 +126,7 @@
                     android:id="@+id/priceEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="@android:color/white"
+                    android:backgroundTint="@color/text_edit_underline"
                     android:hint="@string/label_price"
                     android:inputType="numberDecimal" />
             </android.support.design.widget.TextInputLayout>
